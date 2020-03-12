@@ -1,9 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&&serverTimezone=UTC&&useSSL=false&&useAffectedRows=true
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&&serverTimezone=CTT&&useSSL=false&&useAffectedRows=true
     username: root
     password: dandan0000
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 mybatis:
   configuration:
     default-statement-timeout: 30

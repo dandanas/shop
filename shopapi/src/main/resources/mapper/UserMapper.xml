@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dandan.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.dandan.pojo.User">
+        <id column="user_id" property="userId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getUserByUsername" resultType="INTEGER" parameterType="String">
+        select user_id from user where username = #{username, jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUserByUserId" resultMap="UserResultMap" >
+        select * from user where user_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertUser" parameterType="com.dandan.pojo.User">
+        insert into user(username, password, tel, email, qq)
+        VALUES (
+            #{username, jdbcType=VARCHAR},
+            #{password, jdbcType=VARCHAR},
+            #{tel, jdbcType=VARCHAR},
+            #{email, jdbcType=VARCHAR},
+            #{qq, jdbcType=VARCHAR}
+        )
+    </insert>
+</mapper>
