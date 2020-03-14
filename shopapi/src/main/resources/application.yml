@@ -4,6 +4,18 @@ spring:
     username: root
     password: dandan0000
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 7
+    jedis:
+      pool:
+        max-active: 8 #连接池最大连接数
+        max-wait: -1 #连接池最大阻塞等待时间(负值表示无限制)
+        min-idle: 0 #连接池中最大空闲连接
+        max-idle: 8 #连接池中最小空闲连接
+    timeout: 0
+    port: 6379
+    host: 127.0.0.1
+
 
 mybatis:
   configuration:
