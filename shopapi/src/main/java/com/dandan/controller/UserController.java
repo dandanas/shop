@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -38,5 +40,17 @@ public class UserController {
 			logger.error("[register][exception] login exception : {}", e.getMessage());
 		}
 		return RespUtil.failResult("注册失败");
+	}
+
+	@PostMapping("/logout")
+	public RespResult logout(HttpServletRequest request){
+		try{
+			String token = (String)request.getAttribute("token");
+			Integer userId = Integer.valueOf((String)request.getAttribute("userId"));
+			return userService.logout(token, userId);
+		}catch (Exception e){
+			logger.error("[logout][exception] login exception : {}", e.getMessage());
+		}
+		return RespUtil.failResult("登出失败");
 	}
 }
