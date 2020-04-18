@@ -40,7 +40,7 @@ public class WebLogAspect {
 		// 打印调用 controller 的全路径以及执行方法
 		logger.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
 		// 打印请求入参
-//		logger.info("Request Args   : {}", JSON.toJSONString(joinPoint.getArgs()));
+		logger.info("Request Args   : {}", JSON.toJSONString(joinPoint.getArgs()));
 	}
 
 	/**
