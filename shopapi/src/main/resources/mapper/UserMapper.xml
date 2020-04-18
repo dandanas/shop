@@ -6,7 +6,7 @@
         <id column="user_id" property="userId" jdbcType="INTEGER" />
     </resultMap>
 
-    <select id="getUserByUsername" resultType="INTEGER" parameterType="String">
+    <select id="getUserByUsername" resultType="INTEGER">
         select user_id from user where username = #{username, jdbcType=VARCHAR}
     </select>
 

@@ -42,11 +42,12 @@ public class UserService {
 
 	public RespResult register(User user){
 		try{
-			int userId = userMapper.getUserByUsername(user.getUsername());
-			if(userId != 0){
+			Integer userId = userMapper.getUserByUsername(user.getUsername());
+			if(userId != null){
 				return RespUtil.failResult("用户名已存在");
 			}
 			Integer register = userMapper.insertUser(user);
+			System.out.println("register: " + register);
 			if(register != null){
 				return RespUtil.successResp("注册成功",user);
 			}

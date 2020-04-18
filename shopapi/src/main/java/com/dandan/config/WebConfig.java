@@ -12,13 +12,13 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private TokenInterceptor tokenInterceptor;
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(tokenInterceptor).addPathPatterns("/**")
-		.excludePathPatterns("/user/login")
-		.excludePathPatterns("/user/register")
-		.excludePathPatterns("/welcome");
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(tokenInterceptor).addPathPatterns("/**")
+//		.excludePathPatterns("/user/login")
+//		.excludePathPatterns("/user/register")
+//		.excludePathPatterns("/welcome");
+//	}
 
 	//跨域问题
 	@Override

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dandan.mapper.GoodMapper">
+
+    <resultMap id="GoodResultMap" type="com.dandan.pojo.Good">
+        <id column="good_id" property="goodId" jdbcType="INTEGER" />
+        <result column="goods_sn" property="goodSn" jdbcType="VARCHAR" />
+        <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+        <result column="good_img" property="goodImg" jdbcType="VARCHAR" />
+        <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+        <result column="is_sale" property="sale" jdbcType="TINYINT" />
+        <result column="sale_time" property="saleTime" jdbcType="TIMESTAMP" />
+        <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+        <result column="selling_price" property="sellingPrice" jdbcType="DECIMAL" />
+        <result column="good_cat_id" property="goodCatId" jdbcType="INTEGER" />
+        <result column="selling_type" property="sellingType" jdbcType="TINYINT" />
+    </resultMap>
+
+    <select id="allGoods" resultMap="GoodResultMap">
+        select * from goods where shop_id = #{shopId, jdbcType=INTEGER}
+    </select>
+
+    <select id="getGoodsByGoodId" resultMap="GoodResultMap">
+        select * from goods where shop_id = #{shopId, jdbcType=INTEGER} and good_id = #{goodId, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertGood" parameterType="com.dandan.pojo.Good">
+        insert into goods(good_sn, good_name, good_img, shop_id, is_sale, sale_time, cost_price, selling_price, good_cat_id, selling_type)
+        values (
+            #{goodSn, jdbcType=VARCHAR},
+            #{goodName, jdbcType=VARCHAR},
+            #{goodImg, jdbcType=VARCHAR},
+            #{shopId, jdbcType=INTEGER},
+            1,
+            now(),
+            #{costPrice, jdbcType=DECIMAL},
+            #{sellingPrice, jdbcType=DECIMAL},
+            #{goodCatId, jdbcType=INTEGER},
+            #{sellingType, jdbcType=TINYINT}
+        )
+    </insert>
+
+    <update id="updateGood" parameterType="com.dandan.pojo.Good">
+        update goods set
+            good_sn = #{goodSn, jdbcType=VARCHAR},
+            good_name = #{goodName, jdbcType=VARCHAR},
+            good_img = #{goodImg, jdbcType=VARCHAR},
+            is_sale = #{sale, jdbcType=TINYINT},
+            cost_price = #{costPrice, jdbcType=DECIMAL},
+            selling_price = #{sellingPrice, jdbcType=DECIMAL},
+            good_cat_id = #{goodCatId, jdbcType=INTEGER},
+            selling_type = #{sellingType, jdbcType=INTEGER}
+        where good_id = #{goodId, jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteGood" >
+        delete from goods where good_id = #{goodId, jdbcType=INTEGER}
+    </delete>
+</mapper>
