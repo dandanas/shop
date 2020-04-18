@@ -19,3 +19,5 @@ shopapi/.springBeans
 shopapi/.sts4-cache
 
 shopapi/shop.log
+
+*.gz

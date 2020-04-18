@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dandan.mapper.GoodCatMapper">
+    <resultMap id="GoodCatResultMap" type="com.dandan.pojo.GoodsCats" >
+        <id column="goods_cat_id" property="goodsCatId" jdbcType="INTEGER" />
+        <result column="goods_cat_name" property="goodsCatName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getCatNameByCatId" resultType="String">
+        select goods_cat_name from goods_cats where goods_cat_id = #{catId, jdbcType=INTEGER}
+    </select>
+</mapper>

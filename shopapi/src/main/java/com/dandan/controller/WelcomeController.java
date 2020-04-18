@@ -4,6 +4,7 @@ import com.dandan.dto.WelcomeDTO;
 import com.dandan.model.RespResult;
 import com.dandan.utils.RespUtil;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/welcome")
 public class WelcomeController {
 
-	@GetMapping("/")
+	@GetMapping("")
 	public RespResult welcome(){
+		String message = "dandan";
+		return RespUtil.successResp(new WelcomeDTO(message));
+	}
+
+	@PostMapping("")
+	public RespResult welcomePost(){
 		String message = "dandan";
 		return RespUtil.successResp(new WelcomeDTO(message));
 	}

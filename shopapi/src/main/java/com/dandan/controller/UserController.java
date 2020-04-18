@@ -37,7 +37,7 @@ public class UserController {
 		try{
 			return userService.register(user);
 		}catch (Exception e){
-			logger.error("[register][exception] login exception : {}", e.getMessage());
+			logger.error("[register][exception] register exception : {}", e.getMessage());
 		}
 		return RespUtil.failResult("注册失败");
 	}
