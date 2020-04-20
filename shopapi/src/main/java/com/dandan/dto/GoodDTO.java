@@ -39,6 +39,9 @@ public class GoodDTO {
     @JSONField(name = "sellingPrice")
     private Double sellingPrice;
 
+    @JSONField(name = "quantity")
+    private Integer quantity;
+
     @JSONField(name = "goodCatName")
     private String goodCatName;
 

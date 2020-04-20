@@ -23,7 +23,7 @@
     </select>
 
     <select id="getGoodsByGoodId" resultMap="GoodResultMap">
-        select * from goods where shop_id = #{shopId, jdbcType=INTEGER} and good_id = #{goodId, jdbcType=INTEGER}
+        select * from goods where good_id = #{goodId, jdbcType=INTEGER}
     </select>
 
     <insert id="insertGood" parameterType="com.dandan.pojo.Good">
@@ -58,4 +58,8 @@
     <delete id="deleteGood" >
         delete from goods where good_id = #{goodId, jdbcType=INTEGER}
     </delete>
+
+    <update id="updateQuantity" >
+        update good set quantity = #{quantity, jdbcType=INTEGER} where good_id = #{goodId, jdbcType=INTEGER}
+    </update>
 </mapper>

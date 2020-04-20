@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dandan.mapper.InventoryDetailMapper">
+    <resultMap id="InventoryResultMap" type="com.dandan.pojo.InventoryDetail">
+        <id column="inventory_detail_id" property="inventoryDetailId" jdbcType="INTEGER" />
+        <result column="good_id" property="goodId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getAllInventoryDetail" resultMap="InventoryResultMap" >
+        select * from inventory_detail where good_id = #{goodId, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertInventoryDetail" parameterType="com.dandan.pojo.InventoryDetail">
+        insert into inventory_detail(good_id, type, quantity, profit)
+        values (
+            #{goodId, jdbcType=INTEGER},
+            #{type, jdbcType=VARCHAR},
+            #{quantity, jdbcType=INTEGER},
+            #{profit, jdbcType=DECIMAL}
+        )
+    </insert>
+</mapper>

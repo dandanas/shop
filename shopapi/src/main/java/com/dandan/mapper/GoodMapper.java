@@ -10,11 +10,13 @@ public interface GoodMapper {
 
     List<Good> allGoods(Integer shopId);
 
-    Good getGoodsByGoodId(Integer shopId, Integer goodId);
+    Good getGoodsByGoodId(Integer goodId);
 
     void insertGood(Good good);
 
     void updateGood(Good good);
 
     void deleteGood(Integer goodId);
+
+    void updateQuantity(Integer goodId, Integer quantity);
 }

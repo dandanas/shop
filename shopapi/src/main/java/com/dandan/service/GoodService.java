@@ -33,7 +33,7 @@ public class GoodService {
             if(goodId == null || goodId == 0){
                 goods = goodMapper.allGoods(shopId);
             }else{
-                goods.add(goodMapper.getGoodsByGoodId(shopId, goodId));
+                goods.add(goodMapper.getGoodsByGoodId(goodId));
             }
             for (Good good : goods){
                 GoodDTO goodDTO = new GoodDTO();
@@ -46,6 +46,7 @@ public class GoodService {
                 goodDTO.setSaleTime(good.getSaleTime());
                 goodDTO.setCostPrice(good.getCostPrice());
                 goodDTO.setSellingPrice(good.getSellingPrice());
+                goodDTO.setQuantity(good.getQuantity());
                 goodDTO.setGoodCatName(goodCatMapper.getCatNameByCatId(good.getGoodCatId()));
                 switch (good.getSellingType()){
                     case 1:
@@ -88,6 +89,39 @@ public class GoodService {
             goodMapper.deleteGood(goodId);
         }catch (Exception e){
             logger.error("[deleteGood][exception]: {}",e.getMessage());
+        }
+        return RespUtil.successResp();
+    }
+
+    //出库
+    public RespResult outOdStock(Integer goodId, Integer quantity){
+        try {
+            Good good = goodMapper.getGoodsByGoodId(goodId);
+            good.setQuantity(good.getQuantity() - quantity);
+            goodMapper.updateQuantity(goodId, good.getQuantity());
+        }catch (Exception e){
+            logger.error("[outOdStock][exception]: {}",e.getMessage());
+        }
+        return RespUtil.successResp();
+    }
+
+    //入库
+    public RespResult wareHousing(Integer goodId, Integer quantity){
+        try {
+            Good good = goodMapper.getGoodsByGoodId(goodId);
+            good.setQuantity(good.getQuantity() + quantity);
+            goodMapper.updateQuantity(goodId, good.getQuantity());
+        }catch (Exception e){
+            logger.error("[wareHousing][exception]: {}",e.getMessage());
+        }
+        return RespUtil.successResp();
+    }
+
+    public RespResult inventory(Integer goodId, Integer quantity){
+        try {
+            goodMapper.updateQuantity(goodId, quantity);
+        }catch (Exception e){
+            logger.error("[inventory][exception]: {}",e.getMessage());
         }
         return RespUtil.successResp();
     }

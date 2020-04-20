@@ -21,3 +21,5 @@ shopapi/.sts4-cache
 shopapi/shop.log
 
 *.gz
+
+shopfront/node_modules/*

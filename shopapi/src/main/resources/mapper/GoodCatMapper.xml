@@ -6,9 +6,32 @@
     <resultMap id="GoodCatResultMap" type="com.dandan.pojo.GoodsCats" >
         <id column="goods_cat_id" property="goodsCatId" jdbcType="INTEGER" />
         <result column="goods_cat_name" property="goodsCatName" jdbcType="VARCHAR" />
+        <result column="shop_id" property="shopId" jdbcType="INTEGER" />
     </resultMap>
 
     <select id="getCatNameByCatId" resultType="String">
         select goods_cat_name from goods_cats where goods_cat_id = #{catId, jdbcType=INTEGER}
     </select>
+
+    <select id="allGoodCats" resultMap="GoodCatResultMap" >
+        select * from goods_cats where shop_id = #{shopId, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertGoodCat" parameterType="com.dandan.pojo.GoodsCats">
+        insert into goods_cats(goods_cat_name, shop_id)
+        values (
+            #{goodsCatName, jdbcType=VARCHAR},
+            #{shopId, jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="updateGoodCat" parameterType="com.dandan.pojo.GoodsCats">
+        update goods_cats set
+            goods_cat_name = #{goodsCatName, jdbcType=VARCHAR}
+        where goods_cat_id = #{goodsCatId, jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteGoodCat" >
+        delete from goods_cats where goods_cat_id = #{catId, jdbcType=INTEGER}
+    </delete>
 </mapper>
