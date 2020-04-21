@@ -47,7 +47,7 @@ public class UserService {
 				return RespUtil.failResult("用户名已存在");
 			}
 			Integer register = userMapper.insertUser(user);
-			System.out.println("register: " + register);
+
 			if(register != null){
 				return RespUtil.successResp("注册成功",user);
 			}

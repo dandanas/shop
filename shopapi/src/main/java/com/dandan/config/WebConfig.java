@@ -23,6 +23,6 @@ public class WebConfig implements WebMvcConfigurer {
 	//跨域问题
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/*").allowedOrigins("http://192.168.0.105");
+		registry.addMapping("/**").allowedOrigins("*");
 	}
 }
